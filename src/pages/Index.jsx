@@ -58,7 +58,7 @@ const Index = () => {
   return (
     <Container centerContent maxW="container.md" height="100vh" display="flex" flexDirection="column" justifyContent="center" alignItems="center" bg={isCounting ? "black" : isTimeUp ? "blue.500" : "white"}>
       <VStack spacing={4}>
-        {!isCounting && !isTimeUp && (
+        {!isTimeUp && (
           <>
             <Text fontSize="2xl">Select a Task</Text>
             <Select placeholder="Select task" onChange={(e) => setSelectedTask(e.target.value)}>
@@ -71,11 +71,11 @@ const Index = () => {
             <Button onClick={startCountdown} colorScheme="teal">
               Start
             </Button>
-            <Button onClick={() => setShowPinInput(true)} colorScheme="red" variant="outline" position="absolute" top="10px" right="10px" borderColor={useColorModeValue("black", "white")}>
-              Stop
-            </Button>
           </>
         )}
+        <Button onClick={() => setShowPinInput(true)} colorScheme="red" variant="outline" position="absolute" top="10px" right="10px" borderColor={useColorModeValue("black", "white")}>
+          Stop
+        </Button>
         {showPinInput && (
           <Box>
             <Input placeholder="Enter PIN" type="password" value={pin} onChange={(e) => setPin(e.target.value)} />
