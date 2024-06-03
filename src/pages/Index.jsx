@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Container, VStack, Text, Button, Select, Box } from "@chakra-ui/react";
+import { Container, VStack, Text, Button, Select, Box, Input } from "@chakra-ui/react";
 
 const TASK_TIMES = {
   Emails: 30 * 60,
@@ -15,6 +15,8 @@ const Index = () => {
   const [selectedTask, setSelectedTask] = useState("");
   const [timeLeft, setTimeLeft] = useState(0);
   const [isCounting, setIsCounting] = useState(false);
+  const [showPinInput, setShowPinInput] = useState(false);
+  const [pin, setPin] = useState("");
   const [isTimeUp, setIsTimeUp] = useState(false);
 
   useEffect(() => {
@@ -35,6 +37,15 @@ const Index = () => {
     if (selectedTask) {
       setTimeLeft(TASK_TIMES[selectedTask]);
       setIsCounting(true);
+    }
+  };
+
+  const stopCountdown = () => {
+    if (pin === "2024") {
+      setIsCounting(false);
+      setTimeLeft(0);
+      setShowPinInput(false);
+      setPin("");
     }
   };
 
@@ -60,7 +71,18 @@ const Index = () => {
             <Button onClick={startCountdown} colorScheme="teal">
               Start
             </Button>
+            <Button onClick={() => setShowPinInput(true)} colorScheme="red">
+              Stop
+            </Button>
           </>
+        )}
+        {showPinInput && (
+          <Box>
+            <Input placeholder="Enter PIN" type="password" value={pin} onChange={(e) => setPin(e.target.value)} />
+            <Button onClick={stopCountdown} colorScheme="red">
+              Submit
+            </Button>
+          </Box>
         )}
         {isCounting && (
           <Text fontSize="6xl" color="white" fontFamily="monospace">
