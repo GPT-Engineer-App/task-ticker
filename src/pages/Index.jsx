@@ -71,7 +71,7 @@ const Index = () => {
             <Button onClick={startCountdown} colorScheme="teal">
               Start
             </Button>
-            <Button onClick={() => setShowPinInput(true)} colorScheme="red">
+            <Button onClick={() => setShowPinInput(true)} colorScheme="red" variant="outline" position="absolute" top="10px" right="10px">
               Stop
             </Button>
           </>
