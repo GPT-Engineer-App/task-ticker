@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Container, VStack, Text, Button, Select, Box, Input } from "@chakra-ui/react";
+import { Container, VStack, Text, Button, Select, Box, Input, useColorModeValue } from "@chakra-ui/react";
 
 const TASK_TIMES = {
   Emails: 30 * 60,
@@ -71,7 +71,7 @@ const Index = () => {
             <Button onClick={startCountdown} colorScheme="teal">
               Start
             </Button>
-            <Button onClick={() => setShowPinInput(true)} colorScheme="red" variant="outline" position="absolute" top="10px" right="10px">
+            <Button onClick={() => setShowPinInput(true)} colorScheme="red" variant="outline" position="absolute" top="10px" right="10px" borderColor={useColorModeValue("black", "white")}>
               Stop
             </Button>
           </>
